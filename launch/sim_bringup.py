@@ -55,12 +55,12 @@ def generate_launch_description():
             'desired_linear_vel': 0.22,
             'max_linear_vel': 0.4,
             'max_angular_vel': 0.5,
-            'horizon': 6,
+            'horizon': 12,
             'dt': 0.1,
             'goal_tolerance': 0.2,
             'obstacle_threshold': 1.0,
             'avoidance_gain': 2.0,
-            'control_hz': 20.0,
+            'control_hz': 30.0,
         }]
     )
 

@@ -35,8 +35,8 @@ class MPCTracker(Node):
         self.hz         = self.get_parameter('control_hz').value
 
         # exponential obstacle soft cost: w_obs * exp(-dist / obs_sigma)
-        self.obs_sigma = 0.3
-        self.w_obs     = 8.0
+        self.obs_sigma = 0.8
+        self.w_obs     = 12.0
         self.n_obs_pts = 6
 
         self.x   = 0.0
@@ -103,7 +103,7 @@ class MPCTracker(Node):
         for k in range(N):
             dx = X[0, k + 1] - Xref[0, k]
             dy = X[1, k + 1] - Xref[1, k]
-            cost += 15.0 * (dx**2 + dy**2)
+            cost += 10.0 * (dx**2 + dy**2)
 
         for k in range(N):
             cost += 1.0 * (U[0, k] - self.v_des)**2
@@ -111,7 +111,7 @@ class MPCTracker(Node):
 
         for k in range(N - 1):
             cost += 2.0 * (U[0, k + 1] - U[0, k])**2
-            cost += 1.0 * (U[1, k + 1] - U[1, k])**2
+            cost += 2.5 * (U[1, k + 1] - U[1, k])**2
 
         for k in range(N):
             for j in range(n):
@@ -294,7 +294,7 @@ class MPCTracker(Node):
             right      = self.right_min
             obs_points = list(self.obs_points)
 
-        hard_threshold = 0.4
+        hard_threshold = 0.6
         hard_blocked   = (front < hard_threshold or
                           left  < hard_threshold or
                           right < hard_threshold)
