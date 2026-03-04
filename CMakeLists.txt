@@ -48,15 +48,9 @@ install(
     share/${PROJECT_NAME}
 )
 
-add_executable(pure_pursuit src/pure_pursuit.cpp)
-ament_target_dependencies(pure_pursuit ${dependencies})
 
-add_executable(smoothing src/smoothing.cpp)
-ament_target_dependencies(smoothing ${dependencies})
 
 install(TARGETS
-    pure_pursuit
-    smoothing
     DESTINATION lib/${PROJECT_NAME}
 )
 
